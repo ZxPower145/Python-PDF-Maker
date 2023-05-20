@@ -11,6 +11,11 @@ def footer(x):
     pdf.cell(w=0, h=10, txt=row["Topic"], align="R")
 
 
+def line():
+    for i in range(27):
+        pdf.cell(w=0, h=10, txt="", ln=1, border="B")
+
+
 data = pd.read_csv("topics.csv", sep=",")
 
 pdf = FPDF(orientation="P", unit="mm", format="A4")
@@ -22,10 +27,12 @@ for index, row in data.iterrows():
     pdf.set_fill_color(209, 224, 224)
     pdf.set_text_color(153, 102, 255)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="C", ln=0, border=1, fill=True)
-    footer(270)
+    line()
+    footer(5)
 
     for page in range(row['Pages'] - 1):
         pdf.add_page()
-        footer(270)
+        line()
+        footer(5)
 
 pdf.output("output.pdf")
