@@ -2,8 +2,8 @@ import pandas as pd
 from fpdf import FPDF
 
 
-def footer():
-    pdf.ln(260)
+def footer(x):
+    pdf.ln(x)
 
     pdf.set_font(family="Times", size=24, style="I")
 
@@ -22,10 +22,10 @@ for index, row in data.iterrows():
     pdf.set_fill_color(209, 224, 224)
     pdf.set_text_color(153, 102, 255)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="C", ln=0, border=1, fill=True)
-    footer()
+    footer(270)
 
     for page in range(row['Pages'] - 1):
         pdf.add_page()
-        footer()
+        footer(270)
 
 pdf.output("output.pdf")
